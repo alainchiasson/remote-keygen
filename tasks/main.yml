@@ -1,0 +1,12 @@
+---
+# tasks file for remote-keygen
+- name: Test for ssh-keygen
+  command: which ssh-keygen
+  changed_when: false
+  failed_when: false
+  register: keygen_installed
+
+- name: Check ssh-keygen installation status
+  fail:
+    msg: "ssh-keygenis not installed. Install first"
+  when: keygen_installed|failed
