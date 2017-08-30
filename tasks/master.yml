@@ -1,0 +1,6 @@
+---
+- name: Create new ssh key-pair
+  command: ssh-keygen -t rsa -N "" -q -f {{ new_priv_key }}
+  args:
+    creates: "{{ new_priv_key }}"
+  when: master == true

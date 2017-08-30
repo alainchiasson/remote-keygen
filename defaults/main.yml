@@ -1,2 +1,5 @@
 ---
 # defaults file for remote-keygen
+master: true
+new_priv_key:  ~/.ssh/id_rsa_new
+new_pub_key: ~/.ssh/id_rsa_new.pub

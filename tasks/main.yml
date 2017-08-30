@@ -5,8 +5,16 @@
   changed_when: false
   failed_when: false
   register: keygen_installed
+  when: master == true
 
 - name: Check ssh-keygen installation status
   fail:
     msg: "ssh-keygenis not installed. Install first"
   when: keygen_installed|failed
+
+- name: Perform tasks for master
+  include: master.yml
+  when: master == true
+
+- name: Perform tasks for slave
+  include: slave.yml
