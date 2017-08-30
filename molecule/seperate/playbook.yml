@@ -12,10 +12,10 @@
   hosts: master
   become: True
   roles:
-    - { role: remote-keygen }
+    - { role: remote-keygen, keymaster: 'keymaster' }
 
 - name: Converge slave
   hosts: slave
   become: True
   roles:
-    - { role: remote-keygen, master: false }
+    - { role: remote-keygen, keymaster: 'keymaster' }

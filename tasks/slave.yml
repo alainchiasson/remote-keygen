@@ -1,3 +1,3 @@
 ---
 - name: Add new key to authorized_keys
-  authorized_key: key={{ hostvars['keymaster'].new_key }} user=root state=present
+  authorized_key: key={{ hostvars[keymaster].new_key }} user=root state=present

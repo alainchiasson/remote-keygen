@@ -17,7 +17,7 @@ Role Variables
 The following role variables are present
 | Variable | Description | default |
 |----------|-------------|---------|
-| skip-on-error  | If present the script will not stop on failure to generate | False (ie: fail on error ) |
+| keymaster  | The keymaster node should have the value of a host. | localhost |
 
 
 Dependencies

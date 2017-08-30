@@ -3,7 +3,6 @@
   command: ssh-keygen -t rsa -N "" -q -f {{ new_priv_key }}
   args:
     creates: "{{ new_priv_key }}"
-  when: master == true
 
 # Store file into /tmp/fetched/host.example.com/tmp/somefile
 - name: Pull down the newly created public key
@@ -18,3 +17,4 @@
 - name: Set extract key to be shared.
   set_fact:
     new_key: "{{ pub_key['content'] | b64decode }}"
+  
