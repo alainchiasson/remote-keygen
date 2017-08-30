@@ -4,3 +4,17 @@
   args:
     creates: "{{ new_priv_key }}"
   when: master == true
+
+# Store file into /tmp/fetched/host.example.com/tmp/somefile
+- name: Pull down the newly created public key
+  set_fact:
+    new_key: key="{{ lookup('file', new_pub_key ) }}"
+
+- name: Get value of file into a variable
+  slurp:
+    src: "{{ new_pub_key }}"
+  register: pub_key
+
+- name: Set extract key to be shared.
+  set_fact:
+    new_key: "{{ pub_key['content'] | b64decode }}"

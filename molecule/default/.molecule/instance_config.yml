@@ -1,8 +1,0 @@
-# Molecule managed
-
----
-- address: 127.0.0.1
-  identity_file: /Users/alain/Documents/dev/remote-keygen/molecule/default/.molecule/.vagrant/machines/master/virtualbox/private_key
-  instance: master
-  port: '2222'
-  user: vagrant

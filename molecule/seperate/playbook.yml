@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: False
+  tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      become: True
+      changed_when: False
+
+- name: Converge master
+  hosts: master
+  become: True
+  roles:
+    - { role: remote-keygen }
+
+- name: Converge slave
+  hosts: slave
+  become: True
+  roles:
+    - { role: remote-keygen, master: false }
