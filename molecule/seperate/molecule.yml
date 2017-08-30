@@ -1,0 +1,36 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: keymaster
+    groups:
+      - master
+    box: centos/7
+    interfaces:
+      - auto_config: true
+        network_name: private_network
+        type: dhcp
+  - name: keyslave
+    groups:
+      - slave
+    box: centos/7
+    interfaces:
+      - auto_config: true
+        network_name: private_network
+        type: dhcp
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: seperate
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
