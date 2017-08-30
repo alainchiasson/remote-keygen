@@ -17,4 +17,3 @@
 - name: Set extract key to be shared.
   set_fact:
     new_key: "{{ pub_key['content'] | b64decode }}"
-  

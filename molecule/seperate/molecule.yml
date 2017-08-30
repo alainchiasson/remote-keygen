@@ -10,20 +10,20 @@ lint:
 platforms:
   - name: keymaster
     groups:
-    - master
+      - master
     box: centos/7
     interfaces:
-    - auto_config: true
-      network_name: private_network
-      type: dhcp
+      - auto_config: true
+        network_name: private_network
+        type: dhcp
   - name: keyslave
     groups:
-    - slave
+      - slave
     box: centos/7
     interfaces:
-    - auto_config: true
-      network_name: private_network
-      type: dhcp
+      - auto_config: true
+        network_name: private_network
+        type: dhcp
 provisioner:
   name: ansible
   lint:
