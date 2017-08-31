@@ -4,12 +4,12 @@ remote-keygen
 this role is meant to simplify the generation and distribution of SSH keys where
 The keys reside on one master server that will connect to a series of slaves.
 
-Our inital use case was configuring Jenkins slaves from a master.
+My initial use case was configuring Jenkins slaves from a master.
 
 Requirements
 ------------
 
-
+None. 
 
 Role Variables
 --------------
@@ -17,8 +17,11 @@ Role Variables
 The following role variables are present
 | Variable | Description | default |
 |----------|-------------|---------|
-| keymaster  | The keymaster node should have the value of a host. | localhost |
+| keymaster  | The keymaster variable must have master host in the master/slave relationship. The name is based on Ansible server names. | localhost |
 
+WARNING: Define this value. there is a defect that makes this not work as expected since localhost is not a Ansible server.
+
+The key server MUST be defined before the slaves.
 
 Dependencies
 ------------
@@ -29,17 +32,18 @@ and will fail if the binary is not present.
 Example Playbook
 ----------------
 
-The follwoing is the simplest example. It has a master server, which will log
-into any of the slaves. The roles are - remote-keygen/master and remote-keygen/slave
+The following is the simplest example. It has a master server, which will log
+into any of the slaves. If the current server is the keymaster, a keyfile will be generated
+and distributed to all servers.
 
 ```
     - hosts: control
       roles:
-         - remote-keygen/master
+        - { role: remote-keygen, keymaster: 'control' }
 
     - hosts: executor
       roles:
-        - remote-keygen/slave
+        - { role: remote-keygen, keymaster: 'control' }
 ```
 
 License
